@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <meta name="description" content="Calcule o valor do frete por região, peso e tipo de entrega." />
+    <title>Frete Fácil — calcule sua entrega</title>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/freight.js" defer></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Frete Fácil, início">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3.5 7.5h10v9h-10zM13.5 10h4l3 3v3.5h-7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7.5" cy="17.5" r="1.7" fill="currentColor"/><circle cx="17.5" cy="17.5" r="1.7" fill="currentColor"/><path d="M6.5 10.5h4M6.5 13h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span>frete<span class="brand-light">fácil</span></span>
+      </a>
+      <span class="topbar-note"><span class="status-dot"></span> Simulador de entrega</span>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <div class="eyebrow"><span class="eyebrow-line"></span> SIMPLES ASSIM</div>
+        <h1 id="page-title">Seu frete,<br /><span>sem mistério.</span></h1>
+        <p>Preencha os detalhes da entrega e descubra o valor em segundos.</p>
+      </section>
+
+      <section class="calculator" aria-label="Calculadora de frete">
+        <form class="form-panel" id="freight-form">
+          <div class="panel-heading">
+            <div>
+              <span class="step-label">01 <span class="step-rule"></span> DETALHES DA ENTREGA</span>
+              <h2>Para onde vai?</h2>
+            </div>
+            <span class="heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M20 10.2c0 5.1-8 11-8 11s-8-5.9-8-11a8 8 0 1 1 16 0Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.7"/></svg>
+            </span>
+          </div>
+
+          <div class="field-group">
+            <label for="region">Região de destino</label>
+            <div class="select-wrap">
+              <select id="region" name="region" required>
+                <option value="" disabled selected>Selecione uma região</option>
+                <option value="sul">Sul</option>
+                <option value="sudeste">Sudeste</option>
+                <option value="centro-oeste">Centro-Oeste</option>
+                <option value="norte">Norte</option>
+                <option value="nordeste">Nordeste</option>
+              </select>
+              <svg class="select-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 7.5 5 5 5-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+
+          <div class="field-group weight-group">
+            <div class="label-row"><label for="weight">Peso do pacote</label><span class="field-hint">em quilogramas</span></div>
+            <div class="input-wrap">
+              <input id="weight" name="weight" type="number" min="0.1" max="10000" step="0.1" placeholder="Ex.: 3,5" inputmode="decimal" required />
+              <span class="input-suffix">kg</span>
+            </div>
+            <span class="microcopy">Até 5 kg, sem custo adicional por peso.</span>
+          </div>
+
+          <fieldset class="field-group delivery-group">
+            <legend>Tipo de entrega</legend>
+            <div class="delivery-options">
+              <label class="delivery-option">
+                <input type="radio" name="delivery" value="normal" checked />
+                <span class="option-content"><span class="option-title">Normal</span><span class="option-description">Prazo padrão</span></span>
+                <span class="radio-mark" aria-hidden="true"></span>
+              </label>
+              <label class="delivery-option">
+                <input type="radio" name="delivery" value="express" />
+                <span class="option-content"><span class="option-title">Expressa</span><span class="option-description">50% adicional</span></span>
+                <span class="express-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M11.1 2.5 4.8 10h4l-.5 7.5 6.9-9h-4.3l.2-6Z" fill="currentColor"/></svg>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="form-footnote"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.4"/><path d="M10 9v4M10 6.5h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg> Simulação educativa. O valor pode variar conforme a transportadora.</div>
+        </form>
+
+        <aside class="result-panel" aria-labelledby="result-title" aria-live="polite">
+          <div class="result-topline"><span class="result-label"><span class="result-sparkle">✳</span> ESTIMATIVA DO FRETE</span><span class="result-badge">● EM TEMPO REAL</span></div>
+          <div class="result-main">
+            <h2 id="result-title">Quanto vai custar?</h2>
+            <p class="result-caption" id="result-caption">Informe o destino e o peso para ver sua estimativa.</p>
+            <div class="total-wrap"><span class="currency">R$</span><span class="total" id="total">—</span></div>
+            <div class="total-divider"></div>
+            <div class="breakdown" id="breakdown" aria-label="Detalhamento do frete">
+              <div class="breakdown-row"><span>Frete da região</span><span id="region-cost">—</span></div>
+              <div class="breakdown-row"><span>Adicional por peso</span><span id="weight-cost">—</span></div>
+              <div class="breakdown-row express-row" id="express-row" hidden><span>Taxa expressa (50%)</span><span id="express-cost">R$ 0,00</span></div>
+            </div>
+          </div>
+          <div class="result-bottom">
+            <div class="route-illustration" aria-hidden="true">
+              <div class="route-pin"><svg viewBox="0 0 20 20" fill="none"><path d="M16.7 8.3c0 4.2-6.7 9.2-6.7 9.2S3.3 12.5 3.3 8.3a6.7 6.7 0 1 1 13.4 0Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8.1" r="2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+              <span class="route-dash"></span>
+              <div class="route-box"><svg viewBox="0 0 20 20" fill="none"><path d="m10 2.5 7 3.8v7.4l-7 3.8-7-3.8V6.3l7-3.8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m3.2 6.5 6.8 3.8 6.8-3.8M10 10.3v7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+            </div>
+            <span>Uma entrega tranquila começa<br />com o preço certo.</span>
+          </div>
+          <div class="corner-decoration" aria-hidden="true"></div>
+        </aside>
+      </section>
+
+      <section class="rules" aria-label="Regras de cálculo">
+        <div class="rule-intro"><span class="eyebrow">COMO CALCULAMOS</span><p>Transparente do começo<br />ao fim.</p></div>
+        <div class="rule-card"><span class="rule-icon purple">⌖</span><div><strong>Região</strong><span>De R$ 10 a R$ 20</span></div></div>
+        <div class="rule-card"><span class="rule-icon green">↗</span><div><strong>Peso</strong><span>R$ 2 por kg acima de 5 kg</span></div></div>
+        <div class="rule-card"><span class="rule-icon orange">ϟ</span><div><strong>Expressa</strong><span>50% sobre o valor total</span></div></div>
+      </section>
+      <footer>Feito para aprender. <span>Uma conta simples, uma entrega feliz <span class="heart">♥</span></span></footer>
+    </main>
+  </body>
+</html>
