@@ -1,0 +1,10 @@
+{
+  "name": "calculadora-de-frete",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Calculadora educacional de frete por região, peso e modalidade de entrega.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
